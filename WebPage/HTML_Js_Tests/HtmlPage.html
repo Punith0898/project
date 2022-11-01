@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Customer Regerstration</title>
+
+
+    <style>
+
+        body{
+            font-size: 16px;
+            background-color: antiquewhite;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        h1{
+          text-align: center;
+          text-decoration: underline;  
+         
+        }
+
+        form{
+            text-align: left;
+            width : 400px;
+            padding : 15px;
+            border : 2px solid rgb(77, 73, 73);
+            margin: 50px auto 0;
+            border-radius: 5px;  
+        }
+        input{
+            border:1px solid rgb(243, 200, 200);
+            padding:10px;
+            display:block;
+            width:95%;
+            border-radius: 2px;
+        }
+
+        .row{
+            width : 400px;
+            padding-bottom: 15px;
+        }
+        .err{
+            font-size:0.8em;
+            color :indianred;
+        }
+    </style>
+
+    <script>
+
+
+        const $get = function(id){
+            return document.getElementById(id);
+        }
+        function showErr(ele, msg){
+            $get(ele).innerText = msg;
+        }
+        function validate(){
+
+            let name = document.regForm.name.value;
+            let email = document.regForm.email.value;
+            let mobile = document.regForm.phone.value;
+            let date = document.regForm.date.value;
+            let amount = document.regForm.amount.value;
+
+            if(name == "" || name == null){
+                showErr("errName", "Name is mandatory")
+                return false;
+            }else{
+                showErr("errName", "")
+            }
+            if(email == ""){
+                showErr("errEmail", "Email is mandatory")
+                return false;
+            }else{
+                showErr("errEmail", "")
+            }
+            let regEx = new RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+            if(regEx.test(email) == false){
+                showErr("errEmail", "Email is not in a valid format")
+                return false;
+            } else {
+                showErr("errEmail", "")
+            }
+            if(mobile == ""){
+            showErr("errPhone", "Telephone number is mandatory")
+                return false;
+            }else {
+                showErr("errPhone", "")
+            }
+
+            if(date == ""){
+            showErr("errDate", "please enter billing date")
+                return false;
+            }else {
+                showErr("errDate", "")
+            }
+            
+            if(amount == "" || amount == null){
+                showErr("errAmount", "Amount is mandatory")
+                return false;
+            }else{
+                showErr("errAmount", "")
+            }
+
+            
+        }
+    </script>
+
+
+</head>
+<body>
+    <form action="" name="regForm" novalidate="true" onsubmit="return validate()">
+        <h1>User Application Form</h1>
+        <div class="row">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" placeholder="Enter the Customer name" id="name"/>
+            <div id="errName" class="err"></div>
+        </div>
+
+        <div class="row">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" placeholder="Enter the Email address" id="email" />
+            <div id="errEmail" class="err"></div>
+        </div>
+
+        <div class="row">
+            <label for="phone">Telephone</label>
+            <input type="text" id="phone" placeholder="Enter the Telephone number" name="phone" />
+            <div id="errPhone" class="err"></div>
+        </div>
+
+        <div class="row">
+            <label for="date">Billing Date</label>
+            <input type="date" id="date" placeholder="Enter the Date" name="date">
+            <div id="errDate" class="err"></div>
+        </div> 
+
+        <div class="row">
+            <label for="amount">BillAmount</label>
+            <input type="number" id="amount" placeholder="Enter the amount" name="amount">
+            <div id="errAmount" class="err"></div>
+        </div>
+       
+        <button>Register</button>
+    </form>
+
+   
+
+
+</body>
+</html>
